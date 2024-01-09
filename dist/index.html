@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.royalresorts.com/img/logo/favicon16x16.png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.royalresorts.com/img/logo/favicon32x32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.royalresorts.com/img/logo/favicon96x96.png"
+      sizes="96x96"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="https://www.royalresorts.com/img/logo/touch-ipad.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="https://www.royalresorts.com/img/logo/touch-iphone.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="https://www.royalresorts.com/img/logo/touch-ipad-ret.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Firma - Royal Resorts</title>
+    <script async type="module" crossorigin src="/generador-de-firmas/assets/index-LXHCpDus.js"></script>
+    <link rel="stylesheet" crossorigin href="/generador-de-firmas/assets/index-McC5Q_6c.css">
+  </head>
+  <body>
+    <div class="container py-4 px-3 mx-auto">
+      <h1 class="mb-3">Generador de Firma</h1>
+
+      <div class="row">
+        <div class="col mb-3 col-12 col-md-6 col-lg-4">
+          <label for="singEmail" class="form-label">Correo</label>
+          <input
+            type="email"
+            class="form-control"
+            id="singEmail"
+            placeholder="name@example.com"
+          />
+        </div>
+        <div class="col mb-3 col-12 col-md-6 col-lg-4">
+          <label for="singName" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="singName"
+            placeholder="Nombre"
+            required
+          />
+        </div>
+        <div class="col mb-3 col-12 col-md-12 col-lg-4">
+          <label for="singJob" class="form-label">Puesto</label>
+          <input
+            type="text"
+            class="form-control"
+            id="singJob"
+            placeholder="Manager / Gerente"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mb-3 col-12 col-md-6 col-lg-4">
+          <label for="singExt" class="form-label">Ext.</label>
+          <input
+            type="text"
+            class="form-control"
+            id="singExt"
+            placeholder="00000"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container singRender border rounded position-relative">
+      <div class="background"></div>
+      <div class="row">
+        <div class="col p-3 fs-4">
+          <button id="action_copiar" class="btn btn-primary d-none">
+            Copiar
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div id="finalHtml" class="col py-5">
+          <!-- Firma Inicio -->
+          <table width="680" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td>
+                <table cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td valign="middle" style="padding: 0 8px 0 0">
+                      <img
+                        alt="Royal Resorts"
+                        style="width: 251px"
+                        src="https://www.royalresorts.com/wp-content/uploads/2018/07/royalresorts.jpg"
+                      />
+                    </td>
+
+                    <td valign="middle" style="padding: 0 10px">
+                      <img
+                        src="https://www.royalresorts.com/wp-content/uploads/2018/07/line.jpg"
+                        alt="line"
+                      />
+                    </td>
+
+                    <td
+                      valign="top"
+                      style="
+                        font-size: 1em;
+                        padding: 0 15px 0 8px;
+                        vertical-align: top;
+                      "
+                    >
+                      <table
+                        width="404"
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        style="
+                          line-height: 1.4;
+                          font-family: Verdana, Geneva, sans-serif;
+                          font-size: 90%;
+                          color: #000001;
+                        "
+                      >
+                        <tr>
+                          <td colspan="8">
+                            <div
+                              id="renderName"
+                              style="
+                                font-size: 1em;
+                                color: #000001;
+                                font-weight: 800;
+                                text-transform: uppercase;
+                              "
+                            >
+                              XXXX (Nombre)
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="8" style="padding: 4px 0">
+                            <div
+                              style="
+                                color: #000001;
+                                font-size: 11px;
+                                font-style: italic;
+                                font-weight: 600;
+                              "
+                            >
+                              <span id="renderJob">Puesto / XX XXXXXX</span>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td colspan="8">
+                            <span
+                              ><a
+                                href="mailto:acastrom@royalresorts.com"
+                                style="
+                                  color: #005ac0;
+                                  font-style: italic;
+                                  font-size: 12px;
+                                "
+                                id="renderEmail"
+                                target="_blank"
+                                >name@royalresorts.com</a
+                              ></span
+                            >
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td height="20" colspan="8">&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                          <td colspan="8">
+                            <span
+                              style="
+                                font-size: 12px;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                              "
+                              >Royal Resorts</span
+                            >
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td colspan="8" style="font-size: 12px">
+                            <span style="font-weight: 600">Tel.</span>
+                            <span
+                              ><a
+                                style="color: #000001; text-decoration: none"
+                                href="tel:529988810100"
+                                > +52(998) 8810100</a
+                              ></span
+                            >
+                            | <span style="font-weight: 600">Ext.</span>
+                            <span id="renderExt"> 00000</span>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td colspan="8">
+                            <span
+                              ><a
+                                href="http://www.royalresorts.com"
+                                style="
+                                  color: #005ac0;
+                                  font-style: italic;
+                                  font-size: 12px;
+                                "
+                                target="_blank"
+                                >www.royalresorts.com</a
+                              ></span
+                            >
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td height="20" colspan="12">&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <table border="0">
+                              <tbody>
+                                <tr>
+                                  <td width="46">
+                                    <!-- <a
+                                      href="https://www.facebook.com/royalresort"
+                                      target="_blank"
+                                      ><img
+                                        src="https://www.royalresorts.com/wp-content/uploads/2018/07/facebook.jpg"
+                                        width="46"
+                                        height="46"
+                                        alt="Facebook"
+                                    /></a> -->
+                                  </td>
+                                  <td width="2">&nbsp;</td>
+                                  <td width="46">
+                                    <!-- <a
+                                      href="https://twitter.com/royalresorts"
+                                      target="_blank"
+                                      ><img
+                                        src="https://www.royalresorts.com/wp-content/uploads/2018/07/twitter.jpg"
+                                        width="46"
+                                        height="46"
+                                        alt="twitter"
+                                    /></a> -->
+                                  </td>
+                                  <td width="2">&nbsp;</td>
+                                  <td width="46">
+                                    <!-- <a
+                                      href="https://www.youtube.com/channel/UCVPOzZcFIe5-2xy3J1bdHEQ"
+                                      target="_blank"
+                                      ><img
+                                        src="https://www.royalresorts.com/wp-content/uploads/2018/07/youtube-1.jpg"
+                                        width="46"
+                                        height="46"
+                                        alt="Youtube"
+                                    /></a> -->
+                                  </td>
+
+                                  <td width="2">&nbsp;</td>
+                                  <td width="46">
+                                    <!-- <a
+                                      href="http://www.tripadvisor.com/Hotel_Review-g150807-d153138-Reviews-The_Royal_Sands-Cancun_Yucatan_Peninsula.html"
+                                      target="_blank"
+                                      ><img
+                                        src="https://www.royalresorts.com/wp-content/uploads/2018/07/tripadvisor.jpg"
+                                        width="46"
+                                        height="46"
+                                        alt="Tripadvisor"
+                                    /></a> -->
+                                  </td>
+                                  <td width="2">&nbsp;</td>
+                                  <td width="46">
+                                    <!-- <a
+                                      href="https://www.royalresorts.com/blog-and-newsletter/"
+                                      target="_blank"
+                                      ><img
+                                        src="https://www.royalresorts.com/wp-content/uploads/2018/07/rresorts.jpg"
+                                        width="46"
+                                        height="46"
+                                        alt="Royal Resorts News"
+                                    /></a> -->
+                                  </td>
+                                  <td width="119">&nbsp;</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- Firma Final -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
