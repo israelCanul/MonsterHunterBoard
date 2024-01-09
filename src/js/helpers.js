@@ -1,90 +1,39 @@
-function isValid(e) {
-  e.target.classList.remove('is-invalid');
-  e.target.classList.add('is-valid');
-}
-function isInValid(e) {
-  e.target.classList.add('is-invalid');
-  e.target.classList.remove('is-valid');
+import { getObject } from './firebase';
+function getItemsInGame(callback = () => {}) {
+  getObject('items', (dt, err) => callback(dt, err));
 }
 
-function checkAllInputs(inputArrays) {
-  let response = true;
-  inputArrays.forEach((element) => {
-    if (!document.querySelector(`#${element}`).classList.contains('is-valid'))
-      response = false;
+function renderOres(ores = [], container) {
+  container.innerHTML = '';
+  ores.map((ore) => {
+    let orerendered = renderOre(ore);
+    container.innerHTML += orerendered;
   });
-  return response;
+}
+function renderOre(ore = {}) {
+  let oreRender = `
+        <div class="col col-12 col-md-6 py-2">
+          <div class="row bg-white">
+            <div class="col col-12 col-md-4 col-lg-3 monserrat">
+              ${ore}:
+            </div>
+            <div
+              class="col col-12 col-md-8 col-lg-9 d-flex flex-row justify-content-between"
+            >
+              <span>1</span>
+              <div class="actions d-flex flex-row gap-1">
+                <button type="button" class="btn btn-sm btn-outline-primary">
+                  add +
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-primary">
+                  Use
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>  
+  `;
+  return oreRender;
 }
 
-function validEmpty(e, renderTag) {
-  if (e.target.value !== '') {
-    isValid(e);
-    document.querySelector(renderTag).innerHTML = e.target.value;
-  } else {
-    document.querySelector(renderTag).innerHTML = '';
-    isInValid(e);
-  }
-}
-function validEmailEmpty(e, renderTag) {
-  if (e.target.value !== '' && validateEmail(e.target.value)) {
-    isValid(e);
-    document.querySelector(renderTag).innerHTML = e.target.value;
-    document
-      .querySelector(renderTag)
-      .setAttribute('href', `mailto:${e.target.value}`);
-  } else {
-    document.querySelector(renderTag).innerHTML = '';
-    isInValid(e);
-  }
-}
-const validateEmail = (email) => {
-  return email.match(
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  );
-};
-
-function CopyToClipboard(element, callback = () => {}) {
-  var doc = document,
-    text = doc.getElementById(element),
-    range,
-    selection;
-
-  if (doc.body.createTextRange) {
-    range = doc.body.createTextRange();
-    range.moveToElementText(text);
-    range.select();
-  } else if (window.getSelection) {
-    selection = window.getSelection();
-    range = doc.createRange();
-    range.selectNodeContents(text);
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-  // document.execCommand('copy');
-  const html = new Blob([text.outerHTML], { type: 'text/html' });
-  const data = new ClipboardItem({ 'text/html': html });
-
-  navigator.clipboard.write([data]).then(
-    () => {
-      /* success */
-      console.log('se copio');
-      callback(true, false);
-    },
-    (e) => {
-      /* failure */
-      callback(false, true);
-      console.log(e);
-      console.log('error al copiar');
-    }
-  );
-  window.getSelection().removeAllRanges();
-}
-
-export {
-  validEmpty,
-  isInValid,
-  isValid,
-  validEmailEmpty,
-  CopyToClipboard,
-  checkAllInputs,
-};
+export { getItemsInGame, renderOres };
