@@ -13,7 +13,30 @@ import { getItemsInGame, renderOres } from './helpers';
     if (data) {
       renderOres(data.ores, oresWrapper);
     }
-
-    console.log(data);
   });
 })();
+function handleButtonClickInventory() {
+var divAddInventory = document.createElement("div");
+divAddInventory.classList.add("d-flex")
+divAddInventory.classList.add("column-gap-3")
+var buttonAddInventory = document.createElement("input");
+buttonAddInventory.type = "button"
+buttonAddInventory.value = "Agregar"
+buttonAddInventory.classList.add("btn")
+buttonAddInventory.classList.add("btn-outline-primary")
+var inputToAddInventory = document.createElement("input");
+inputToAddInventory.type = "text"
+inputToAddInventory.classList.add("form-control")
+inputToAddInventory.id = "itemInvetory"
+var itemsInventoryContainer = document.getElementById("listItemsInventory");
+
+divAddInventory.appendChild(inputToAddInventory)
+divAddInventory.appendChild(buttonAddInventory)
+
+itemsInventoryContainer.appendChild(divAddInventory);
+inputToAddInventory.focus();
+}
+  var addInventory = document.getElementById("addItem")
+  if (addInventory) {
+    addInventory.addEventListener("click", handleButtonClickInventory);
+  }
