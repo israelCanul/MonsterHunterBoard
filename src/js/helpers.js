@@ -36,4 +36,57 @@ function renderOre(ore = {}) {
   return oreRender;
 }
 
-export { getItemsInGame, renderOres };
+function renderInventory(timeStamp = '00ss') {
+  let inventoryRender = `
+  <div class="col col-12 col-md-6 py-2 inventoryItem-${timeStamp}">
+    <div class="row bg-white">
+      <div class="col col-12 col-md-6 col-lg-5 monserrat">
+        <input type="text" class="form-control " id="inventory-inputName-${timeStamp}">
+      </div>
+      <div
+        class="col col-12 col-md-6 col-lg-7 d-flex flex-row justify-content-between"
+      >
+        <span class="d-flex align-items-center justofy-content-center" id="inventory-countdata-${timeStamp}">1</span>
+        <div class="actions d-flex flex-row gap-1 py-2">
+          <button type="button" class="btn btn-sm btn-outline-primary inventory-btnAddMore" data-inventoryId="${timeStamp}">
+            add +
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-primary inventory-btnUse" data-inventoryId="${timeStamp}">
+            Use
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>  
+  `;
+  return inventoryRender;
+}
+
+function initializeBtnInventory(timeStamp = '00ss') {
+  let btnIncrement = document.querySelectorAll('.inventory-btnAddMore');
+  let btnUse = document.querySelectorAll('.inventory-btnUse');
+  btnIncrement.forEach((btn) => {
+    let dataInventory = btn.dataset.inventoryid;
+    btn.addEventListener('click', () => {
+      let spanValue = document.querySelector(
+        `#inventory-countdata-${dataInventory}`
+      );
+      let spanCount = parseInt(spanValue.textContent);
+      spanCount++;
+      spanValue.innerText = spanCount;
+    });
+  });
+  btnUse.forEach((btn) => {
+    let dataInventory = btn.dataset.inventoryid;
+    btn.addEventListener('click', () => {
+      let spanValue = document.querySelector(
+        `#inventory-countdata-${dataInventory}`
+      );
+      let spanCount = parseInt(spanValue.textContent);
+      spanCount--;
+      spanValue.innerText = spanCount < 0 ? 0 : spanCount;
+    });
+  });
+}
+
+export { getItemsInGame, renderOres, renderInventory, initializeBtnInventory };
