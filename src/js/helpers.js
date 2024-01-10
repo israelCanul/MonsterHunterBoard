@@ -5,7 +5,8 @@ function getItemsInGame(callback = () => {}) {
 
 function renderOres(ores = [], container) {
   container.innerHTML = '';
-  ores.map((ore) => {
+  Object.keys(ores).map((keyore) => {
+    let ore = ores[keyore];
     let orerendered = renderOre(ore);
     container.innerHTML += orerendered;
   });

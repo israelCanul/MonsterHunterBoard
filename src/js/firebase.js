@@ -7,20 +7,35 @@ import {
   ref,
   query,
   equalTo,
+  onValue,
   set,
   remove,
 } from 'firebase/database';
 
 function getObject(item, callback = () => {}) {
   const database = getDatabase(app);
-  get(query(ref(database, item)))
-    .then((data) => {
-      callback(data.val(), null);
-    })
-    .catch((err) => {
-      console.log(err);
-      callback(null, err);
-    });
+  const refItems = ref(database, item);
+  onValue(refItems, (snapshot) => {
+    const data = snapshot.val();
+    callback(data, null);
+  });
+
+  //old version
+  // get(query(ref(database, item)))
+  //   .then((data) => {
+  //     callback(data.val(), null);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //     callback(null, err);
+  //   });
 }
 
-export { getObject };
+function setDataToFirebase(referencia, obj) {
+  const database = getDatabase(app);
+  const postOresRef = ref(database, referencia);
+  const newPostRef = push(postOresRef);
+  set(newPostRef, obj);
+}
+
+export { getObject, setDataToFirebase };

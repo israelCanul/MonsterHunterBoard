@@ -8,11 +8,16 @@ import {
   renderInventory,
   initializeBtnInventory,
 } from './helpers';
+import { setDataToFirebase } from './firebase';
 
 (function () {
   'use strict';
   let oresWrapper = document.querySelector('.oresWrapper');
   var addInventory = document.getElementById('addItem');
+  let btnAddOre = document.querySelector('#addOre');
+  btnAddOre.addEventListener('click', () => {
+    setDataToFirebase('items/ores', { label: 'asdasd', value: 'ggfgf' });
+  });
 
   getItemsInGame((data, err) => {
     if (err) alert('error getting items');
