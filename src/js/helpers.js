@@ -21,7 +21,7 @@ function renderOre(ore = {}) {
             <div
               class="col col-12 col-md-6 col-lg-7 d-flex flex-row justify-content-between"
             >
-              <span>1</span>
+              <span> ${ore.value}</span>
               <div class="actions d-flex flex-row gap-1">
                 <button type="button" class="btn btn-sm btn-outline-primary" data-oreCode="${ore.value}">
                   add +
