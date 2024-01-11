@@ -15,6 +15,7 @@ import { setDataToFirebase } from './firebase';
   let oresWrapper = document.querySelector('.oresWrapper');
   var addInventory = document.getElementById('addItem');
   let btnAddOre = document.querySelector('#addOre');
+  let btnModal = document.getElementById('saveChangesBtn');
   btnAddOre.addEventListener('click', () => {
     setDataToFirebase('items/ores', { label: 'asdasd', value: 'ggfgf' });
   });
@@ -25,7 +26,6 @@ import { setDataToFirebase } from './firebase';
       renderOres(data.ores, oresWrapper);
     }
   });
-
   function handleButtonClickInventory() {
     var itemsInventoryContainer = document.getElementById('listItemsInventory');
     let timeStamp = new Date().getTime();
@@ -35,8 +35,30 @@ import { setDataToFirebase } from './firebase';
     document.querySelector(`#inventory-inputName-${timeStamp}`).focus();
   }
 
-  //
   if (addInventory) {
     addInventory.addEventListener('click', handleButtonClickInventory);
+  }
+  if (btnModal) {
+    btnModal.addEventListener('click', saveChanges);
+  }
+
+
+
+  function saveChanges() {
+    var form = document.getElementById('myForm');
+    var modal = document.getElementById('closeModalMonster');
+    var showErrors = document.getElementById("errorsModal")
+    if (form.checkValidity()) {
+      var itemName = document.getElementById('itemName').value;
+      var itemCantity = document.getElementById('itemValue').value;
+      setDataToFirebase('items/ores', { label: itemName, value: itemCantity });
+      modal.click()
+      form.reset();
+    } else {
+      showErrors.classList.add("text-center")
+      showErrors.classList.add("text-danger")
+      showErrors.innerHTML = "faltan campos huevon"
+      console.log('El formulario no es válido');
+    }
   }
 })();

@@ -62,13 +62,22 @@
       class="container HunterBonesOresandHides px-2 px-lg-5 py-2 py-lg-4 border huntertext"
     >
       <div class="row">
-        <div class="col">
+        <div class="col col-xs-6">
           <h3 class="hunterF">Common Bones, Ores and Hides:</h3>
         </div>
-      </div>
+        <div class="col col-xs-6 d-flex justify-content-end align-items-center">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#monsterModal"
+          >
+            Add +
+          </button>
+        </div>
+      </div>    
       <!-- Item -->
       <div class="row oresWrapper">
-
       </div>
     </div>
     <div class="container px-2 px-lg-5 py-2 py-lg-4 border huntertext">
@@ -86,21 +95,48 @@
           </button>
         </div>
         <div class="col col-12 py-2 py-md-3 py-lg-4">
-          <div class="row " id="listItemsInventory">
-              
+          <div class="row " id="listItemsInventory">  
           </div>
           </div>
-        </div>
-        
+        </div> 
       </div>
     </div>
     <button
-            type="button"
-            class="btn btn-sm btn-outline-primary"
-            id="addOre"
-          >
-            Add ore
-          </button>
+    type="button"
+    class="btn btn-sm btn-outline-primary"
+    id="addOre"
+    >
+    Add ore
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="monsterModal" tabindex="-1" aria-labelledby="monsterModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="monsterModalLabel">Añadir items</h1>
+            <button type="button" class="btn-close" id="closeModalMonster" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="myForm">
+              <div class="mb-3">
+                <label for="itemName" class="form-label">Nombre del ítem:</label>
+                <input type="text" class="form-control" id="itemName" name="itemName" required>
+              </div>
+              <div class="mb-3">
+                <label for="itemValue" class="form-label">Cantidad del ítem:</label>
+                <input  type="number" class="form-control" id="itemValue" name="itemValue" required>
+              </div>
+              <!-- Agregar más campos según sea necesario -->
+            </form>
+            <div id="errorsModal"></div>
+          </div>
+          <div class="modal-footer"> 
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="./js/main.js" defer async></script>
   </body>
 </html>
