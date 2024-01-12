@@ -89,7 +89,8 @@
           <button
             type="button"
             class="btn btn-sm btn-outline-primary"
-            id="addItem"
+            data-bs-toggle="modal"
+            data-bs-target="#monsterModalInventory"
           >
             Add +
           </button>
@@ -126,13 +127,35 @@
                 <label for="itemValue" class="form-label">Cantidad del ítem:</label>
                 <input  type="number" class="form-control" id="itemValue" name="itemValue" required>
               </div>
-              <!-- Agregar más campos según sea necesario -->
             </form>
             <div id="errorsModal"></div>
           </div>
           <div class="modal-footer"> 
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" id="saveChangesBtn">Guardar cambios</button>
+            <button type="button" class="btn btn-primary" id="saveChangesBtn1">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="monsterModalInventory" tabindex="-1" aria-labelledby="monsterModalInventoryLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="monsterModalInventoryLabel">Añadir items</h1>
+            <button type="button" class="btn-close" id="closeModalMonster" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="myForm2">
+              <div class="mb-3">
+                <label for="itemName" class="form-label">Nombre del ítem:</label>
+                <input type="text" class="form-control" id="itemName2" name="itemName" required>
+              </div>
+            </form>
+            <div id="errorsModal2"></div>
+          </div>
+          <div class="modal-footer"> 
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="saveChangesBtn2">Guardar cambios</button>
           </div>
         </div>
       </div>

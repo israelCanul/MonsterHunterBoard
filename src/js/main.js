@@ -5,7 +5,7 @@ import * as bootstrap from 'bootstrap';
 import {
   getItemsInGame,
   renderOres,
-  renderInventory,
+  renderItems,
   initializeBtnInventory,
 } from './helpers';
 import { setDataToFirebase } from './firebase';
@@ -13,52 +13,72 @@ import { setDataToFirebase } from './firebase';
 (function () {
   'use strict';
   let oresWrapper = document.querySelector('.oresWrapper');
-  var addInventory = document.getElementById('addItem');
   let btnAddOre = document.querySelector('#addOre');
-  let btnModal = document.getElementById('saveChangesBtn');
+  let btnModal1 = document.getElementById('saveChangesBtn1');
+  let btnModal2 = document.getElementById('saveChangesBtn2');
+  let itemsInventoryWrapper = document.getElementById('listItemsInventory');
+  let url = 'items/ores';
+
   btnAddOre.addEventListener('click', () => {
-    setDataToFirebase('items/ores', { label: 'asdasd', value: 'ggfgf' });
+    setDataToFirebase(url, { label: 'asdasd', value: 'ggfgf' });
   });
 
   getItemsInGame((data, err) => {
     if (err) alert('error getting items');
     if (data) {
+      console.log(data);
       renderOres(data.ores, oresWrapper);
+      renderItems(data.inventory, itemsInventoryWrapper )
     }
   });
-  function handleButtonClickInventory() {
-    var itemsInventoryContainer = document.getElementById('listItemsInventory');
-    let timeStamp = new Date().getTime();
-    let newInventory = renderInventory(timeStamp);
-    itemsInventoryContainer.innerHTML += newInventory;
-    initializeBtnInventory(timeStamp);
-    document.querySelector(`#inventory-inputName-${timeStamp}`).focus();
+  if (btnModal1) {
+    btnModal1.addEventListener('click', ()=>saveChanges('ores'));
   }
-
-  if (addInventory) {
-    addInventory.addEventListener('click', handleButtonClickInventory);
-  }
-  if (btnModal) {
-    btnModal.addEventListener('click', saveChanges);
+  if (btnModal2) {
+    btnModal2.addEventListener('click', ()=>saveChanges('inventory'));
   }
 
 
 
-  function saveChanges() {
+  function saveChanges(path) {
     var form = document.getElementById('myForm');
+    var form2 = document.getElementById('myForm2');
     var modal = document.getElementById('closeModalMonster');
-    var showErrors = document.getElementById("errorsModal")
-    if (form.checkValidity()) {
-      var itemName = document.getElementById('itemName').value;
-      var itemCantity = document.getElementById('itemValue').value;
-      setDataToFirebase('items/ores', { label: itemName, value: itemCantity });
-      modal.click()
-      form.reset();
-    } else {
-      showErrors.classList.add("text-center")
-      showErrors.classList.add("text-danger")
-      showErrors.innerHTML = "faltan campos huevon"
-      console.log('El formulario no es válido');
+    var showErrors = document.getElementById("errorsModal");
+    var showErrors2 = document.getElementById("errorsModal2");
+    switch (path) {
+      case 'ores':
+        if (form.checkValidity()) {
+          var itemName = document.getElementById('itemName').value;
+          var itemCantity = document.getElementById('itemValue').value;
+          setDataToFirebase(`items/${path}`, { label: itemName, value: itemCantity });
+          modal.click()
+          form.reset();
+        } else {
+          showErrors.classList.add("text-center")
+          showErrors.classList.add("text-danger")
+          showErrors.innerHTML = "faltan campos huevon"
+          console.log('El formulario no es válido');
+        }
+        break;
+      case 'inventory':
+        if (form2.checkValidity()) {
+          var itemName = document.getElementById('itemName2').value;
+          setDataToFirebase(`items/${path}`, { name: itemName,});
+          modal.click()
+          form2.reset();
+        } else {
+          showErrors2.classList.add("text-center")
+          showErrors2.classList.add("text-danger")
+          showErrors2.innerHTML = "faltan campos huevon"
+          console.log('El formulario no es válido');
+        }
+        break;
+    
+      default:
+        console.log('Error seleccion');
+        break;
     }
+    
   }
 })();

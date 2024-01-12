@@ -36,32 +36,31 @@ function renderOre(ore = {}) {
   `;
   return oreRender;
 }
+function renderItems(items={}, container) {
+  container.innerHTML = '';
+  Object.keys(items).map((keyore) => {
+    let item = items[keyore];
+    let itemrendered = renderItem(item);
+    container.innerHTML += itemrendered;
+  });
+}
 
-function renderInventory(timeStamp = '00ss') {
+function renderItem(item){
   let inventoryRender = `
-  <div class="col col-12 col-md-6 py-2 inventoryItem-${timeStamp}">
+  <div class="col col-12 col-md-6 py-2 inventoryItem-${item}">
     <div class="row bg-white">
-      <div class="col col-12 col-md-6 col-lg-5 monserrat">
-        <input type="text" class="form-control " id="inventory-inputName-${timeStamp}">
-      </div>
-      <div
-        class="col col-12 col-md-6 col-lg-7 d-flex flex-row justify-content-between"
-      >
-        <span class="d-flex align-items-center justofy-content-center" id="inventory-countdata-${timeStamp}">1</span>
-        <div class="actions d-flex flex-row gap-1 py-2">
-          <button type="button" class="btn btn-sm btn-outline-primary inventory-btnAddMore" data-inventoryId="${timeStamp}">
-            add +
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-primary inventory-btnUse" data-inventoryId="${timeStamp}">
+      <div class="col col-12 col-md-6 col-lg-6 d-flex gap-1 py-2 monserrat">
+      <p> ${item.name}</p>
+        <button type="button" class="btn btn-sm btn-outline-primary inventory-btnUse" data-inventoryId="${item}">
             Use
-          </button>
-        </div>
+        </button>
       </div>
     </div>
   </div>  
   `;
   return inventoryRender;
 }
+
 
 function initializeBtnInventory(timeStamp = '00ss') {
   let btnIncrement = document.querySelectorAll('.inventory-btnAddMore');
@@ -90,4 +89,4 @@ function initializeBtnInventory(timeStamp = '00ss') {
   });
 }
 
-export { getItemsInGame, renderOres, renderInventory, initializeBtnInventory };
+export { getItemsInGame, renderOres, initializeBtnInventory, renderItems };
