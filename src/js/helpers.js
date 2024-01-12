@@ -48,13 +48,11 @@ function renderItems(items={}, container) {
 function renderItem(item){
   let inventoryRender = `
   <div class="col col-12 col-md-6 py-2 inventoryItem-${item}">
-    <div class="row bg-white">
       <div class="col col-12 col-md-6 col-lg-6 d-flex gap-1 py-2 monserrat">
-      <p> ${item.name}</p>
+      <p class="mb-0"> ${item.name}</p>
         <button type="button" class="btn btn-sm btn-outline-primary inventory-btnUse" data-inventoryId="${item}">
             Use
         </button>
-      </div>
     </div>
   </div>  
   `;
